@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instructions</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+            line-height: 1.8;
+            font-size: 18px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .container {
+            width: 95%;
+            margin: 0 auto;
+        }
+
+        .instructions {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 20px 0;
+        }
+
+        ul {
+            margin-top: 20px;
+            padding-left: 25px;
+        }
+
+        li {
+            margin-bottom: 15px;
+        }
+
+        .checkbox-container {
+            margin-top: 20px;
+        }
+
+        .checkbox-container input {
+            margin-right: 10px;
+        }
+
+        .start-btn {
+            display: block;
+            width: 100%;
+            padding: 20px;
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 22px;
+            margin-top: 30px;
+            opacity: 0.6;
+            pointer-events: none;
+            transition: background-color 0.3s ease, opacity 0.3s ease;
+        }
+
+        .start-btn.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .start-btn:hover {
+            background-color: #45a049;
+        }
+
+        .instructions-header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 28px;
+        }
+
+        .instruction-item {
+            background-color: #e7f0e9;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            font-size: 20px;
+        }
+
+        .instruction-item strong {
+            color: #333;
+        }
+
+        .instruction-item ul {
+            padding-left: 25px;
+            margin-top: 10px;
+        }
+
+        .instruction-item ul li {
+            margin-bottom: 10px;
+        }
+
+        .instruction-item p {
+            margin: 0;
+        }
+
+        .terms-container {
+            background-color: #e7f0e9;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            border: 1px solid #4CAF50;
+            font-size: 18px;
+        }
+
+        .terms-container label {
+            display: flex;
+            align-items: center;
+        }
+
+        .terms-container input {
+            margin-right: 10px;
+        }
+
+        .status-box {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+            border-radius: 4px;
+        }
+
+        .blue-box {
+            background-color: #2196F3;
+        }
+
+        .green-box {
+            background-color: #4CAF50;
+        }
+
+        .red-box {
+            background-color: #F44336;
+        }
+
+        .status-description {
+            display: flex;
+            align-items: center;
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Instructions for the Online Assessment</h1>
+
+    <div class="container">
+        <div class="instructions">
+            <div class="instructions-header">
+                <h2>Key Guidelines</h2>
+            </div>
+
+            <div class="instruction-item">
+                <p><strong>Number of Questions:</strong> The assessment includes 10 multiple-choice questions (MCQs).</p>
+            </div>
+
+            <div class="instruction-item">
+                <p><strong>Time Allocation:</strong> You have 30 minutes to complete the test. The timer will commence automatically when you start.</p>
+            </div>
+
+            <div class="instruction-item">
+                <p><strong>Navigation Instructions:</strong></p>
+                <ul>
+                    <li><strong>Save & Next:</strong> Saves your current answer and moves to the next question.</li>
+                    <li><strong>Submit:</strong> Finalizes your responses and submits the test. Post-submission, modifications will not be allowed.</li>
+                </ul>
+            </div>
+
+            <div class="instruction-item">
+                <p><strong>Selecting Answers:</strong></p>
+                <ul>
+                    <li>Each question has four options. Choose the correct answer by clicking the corresponding radio button.</li>
+                    <li>You can update your selection at any time before submission.</li>
+                </ul>
+            </div>
+
+            <div class="instruction-item">
+                <p><strong>Clearing Responses:</strong></p>
+                <ul>
+                    <li>You may clear your selected answer by clicking the "Clear Response" button for any question, which will leave it unattempted.</li>
+                </ul>
+            </div>
+
+            <div class="instruction-item">
+                <p><strong>Scoring:</strong></p>
+                <ul>
+                    <li>Each correct answer earns 1 mark.</li>
+                    <li>No marks are awarded for unattempted questions.</li>
+                    <li>There is <strong>no negative marking</strong> for incorrect answers.</li>
+                </ul>
+            </div>
+
+            <div class="instruction-item">
+                <p><strong>Final Score:</strong> Your score will be displayed upon completion and submission of the test.</p>
+            </div>
+
+            <div class="instruction-item">
+                <p><strong>Status Indicators:</strong></p>
+                <div class="status-description">
+                    <div class="blue-box status-box"></div>
+                    <p>Question visited but not yet saved.</p>
+                </div>
+                <div class="status-description">
+                    <div class="green-box status-box"></div>
+                    <p>Question saved successfully.</p>
+                </div>
+                <div class="status-description">
+                    <div class="red-box status-box"></div>
+                    <p>Question not yet visited.</p>
+                </div>
+            </div>
+
+            <div class="instruction-item">
+                <p><strong>Accepting Terms and Conditions:</strong></p>
+                <ul>
+                    <li>You must accept the <strong>terms and conditions</strong> by checking the box before starting the exam.</li>
+                    <li>The <strong>Start Exam</strong> button will remain inactive until the checkbox is marked.</li>
+                    <li>Upon accepting the terms, the <strong>Start Exam</strong> button will become active, allowing you to proceed.</li>
+                </ul>
+            </div>
+
+            <div class="instruction-item">
+                <p><strong>Beginning the Exam:</strong></p>
+                <ul>
+                    <li>Clicking the <strong>Start Exam</strong> button will initiate the test and redirect you to the questions page.</li>
+                    <li>Please ensure you are prepared, as the timer will start immediately.</li>
+                </ul>
+            </div>
+
+            <div class="terms-container">
+                <label>
+                    <input type="checkbox" id="termsCheckbox">
+                    I accept the <strong>terms and conditions</strong> of the test.
+                </label>
+            </div>
+
+            <button id="startBtn" class="start-btn" disabled>Start Exam</button>
+        </div>
+    </div>
+
+    <script>
+        var checkbox = document.getElementById("termsCheckbox");
+        var startBtn = document.getElementById("startBtn");
+
+        checkbox.addEventListener("change", function() {
+            if (this.checked) {
+                startBtn.classList.add("active");
+                startBtn.disabled = false; 
+            } else {
+                startBtn.classList.remove("active");
+                startBtn.disabled = true;  
+            }
+        });
+
+        startBtn.addEventListener("click", function() {
+            if (checkbox.checked) {
+                window.location.href = "onlineAssessment.html";  
+            }
+        });
+    </script>
+
+</body>
+<footer style="text-align: center; padding: 20px; background-color: #f1f1f1; font-family: Arial, sans-serif;">
+    <p>III AIML SECTION B</p>
+    <p>221FA18106, 221FA18135, 221FA18139, 221FA18147</p>
+    <p>&copy; 2024 Vignan University. All rights reserved.</p>
+</footer>
+</html>

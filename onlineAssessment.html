@@ -1,0 +1,263 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Examination</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+            line-height: 1.8;
+        }
+
+        /* Common Styles */
+        h1, h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        .container {
+            width: 95%;
+            margin: 0 auto;
+        }
+
+        /* Login Form */
+        .login-container {
+            background-color: #ffffff;
+            padding: 60px;
+            border-radius: 15px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+            width: 450px;
+            margin: 0 auto;
+            margin-top: 80px;
+        }
+
+        label {
+            font-size: 18px;
+            color: #333;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 16px;
+            margin: 15px 0 20px 0;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-size: 18px;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 18px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 20px;
+        }
+
+        .login-btn:hover {
+            background-color: #45a049;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 18px;
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        /* Instructions Page */
+        .instructions {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 20px 0;
+            display: none; /* Hidden initially */
+        }
+
+        ul {
+            margin-top: 20px;
+            padding-left: 25px;
+        }
+
+        li {
+            margin-bottom: 15px;
+        }
+
+        .status-box {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+            border-radius: 4px;
+        }
+
+        .blue-box {
+            background-color: #2196F3;
+        }
+
+        .green-box {
+            background-color: #4CAF50;
+        }
+
+        .red-box {
+            background-color: #F44336;
+        }
+
+        .start-btn {
+            width: 100%;
+            padding: 20px;
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 22px;
+            margin-top: 30px;
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
+        .start-btn.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #f1f1f1;
+        }
+
+    </style>
+</head>
+<body>
+
+<!-- Login Section -->
+<div class="login-container" id="loginSection">
+    <h2>Login</h2>
+    <form id="loginForm">
+        <label for="regno">Registration Number</label>
+        <input type="text" id="regno" placeholder="Enter your Registration Number" required>
+
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="Enter your Password" required>
+
+        <button type="submit" class="login-btn">Login</button>
+        <div id="error" class="error-message"></div>
+    </form>
+</div>
+
+<!-- Instructions Section -->
+<div class="container instructions" id="instructionsSection">
+    <h1>Online Assessment Test Instructions</h1>
+
+    <div class="instructions-header">
+        <h2>Important Instructions</h2>
+    </div>
+
+    <div class="instruction-item">
+        <p><strong>Number of Questions:</strong> The test consists of 10 multiple-choice questions (MCQs).</p>
+    </div>
+
+    <div class="instruction-item">
+        <p><strong>Time Limit:</strong> You have 30 minutes to complete the test. The timer will start automatically when you begin.</p>
+    </div>
+
+    <div class="instruction-item">
+        <p><strong>Navigation Buttons:</strong></p>
+        <ul>
+            <li><strong>Save & Next:</strong> Saves your current response and moves to the next question.</li>
+            <li><strong>Submit:</strong> Finalizes your answers and submits the test.</li>
+        </ul>
+    </div>
+
+    <div class="instruction-item">
+        <p><strong>Status Indicator:</strong></p>
+        <div>
+            <div class="blue-box status-box"></div>
+            <p>Question visited but not saved.</p>
+            <div class="green-box status-box"></div>
+            <p>Question saved successfully.</p>
+            <div class="red-box status-box"></div>
+            <p>Question not yet visited.</p>
+        </div>
+    </div>
+
+    <div class="terms-container">
+        <label>
+            <input type="checkbox" id="termsCheckbox">
+            I accept the <strong>terms and conditions</strong> of the test.
+        </label>
+    </div>
+
+    <button id="startBtn" class="start-btn" disabled>Start Exam</button>
+</div>
+
+<script>
+    // Login Form Script
+    document.getElementById("loginForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+        var regno = document.getElementById("regno").value;
+        var password = document.getElementById("password").value;
+        var errorDiv = document.getElementById("error");
+
+        if (regno === "" || password === "") {
+            errorDiv.textContent = "Please fill in both fields.";
+        } else if (!/^[a-zA-Z0-9]+$/.test(regno)) {
+            errorDiv.textContent = "Registration Number must be alphanumeric.";
+        } else if (password.length < 6) {
+            errorDiv.textContent = "Password must be at least 6 characters long.";
+        } else {
+            errorDiv.textContent = "";
+            // Hide login form and show instructions
+            document.getElementById("loginSection").style.display = "none";
+            document.getElementById("instructionsSection").style.display = "block";
+        }
+    });
+
+    // Instructions Page Script
+    var checkbox = document.getElementById("termsCheckbox");
+    var startBtn = document.getElementById("startBtn");
+
+    // Enable the start button when the checkbox is checked
+    checkbox.addEventListener("change", function() {
+        if (this.checked) {
+            startBtn.classList.add("active");
+            startBtn.disabled = false;
+        } else {
+            startBtn.classList.remove("active");
+            startBtn.disabled = true;
+        }
+    });
+
+    // Redirect to the exam page when the start button is clicked
+    startBtn.addEventListener("click", function() {
+        if (checkbox.checked) {
+            window.location.href = "question.html";  // Replace with actual MCQ test page
+        }
+    });
+</script>
+
+<footer>
+    <p>III AIML SECTION B</p>
+    <p>221FA18077, 221FA18114, 221FA18125, 221FA18142</p>
+    <p>&copy; 2024 Vignan University. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
